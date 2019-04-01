@@ -1,39 +1,27 @@
-#include "Matriz.h"
+//#include "Lector.h"
 #include<iostream>
+#include<cstring>
 using namespace std;
-int main() {
-	Matriz matriz(3, 3);
-	Matriz matriz2;
+int main(int argc, char * * argv) {
+	
+	if(3==argc || 4==argc)
+	{ 		
+		int err = 0;
+		string arg1 = argv[1];
+		string arg2 = argv[2];
+		if ((strlen(argv[1]) - arg1.rfind(".txt")) != 4 || (strlen(argv[2]) - arg2.rfind(".txt")) != 4){
+			err++;
+		}
+		if (4 == argc){
+			string arg3 = argv[3];
+			if ((strlen(argv[3])-arg3.rfind(".txt")) != 4) {
+				err++;
+			}
+		}	
+		if (!err) {
+			//El codiguito va aki c:
 
-	matriz.setValor(1, 1, 'X');
-	matriz.imprimir(cout);
-
-	// matriz2 = matriz; // Copia a nivel de miembro
-	matriz2.asignar(matriz);
-
-
-	matriz2.setValor(0, 0, 'A');
-
-	Matriz * ptr = new Matriz(10, 10);
-
-
-
-	cout << "*ptr" << endl;
-	ptr->imprimir(cout);
-
-	ptr->asignar(matriz2);
-
-	ptr->setValor(0, 1, 'Z');
-	cout << "*ptr" << endl;
-	ptr->imprimir(cout);
-	cout << "Matriz 1" << endl;
-	matriz.imprimir(cout);
-
-	cout << "Matriz 2" << endl;
-	matriz2.imprimir(cout);
-	cout << "ALTO" << endl;
-
-	delete ptr;
-	cin.get();
+		}
+	}
 	return 0;
 }
