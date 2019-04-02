@@ -25,7 +25,6 @@ Palabra::Palabra(char * hilera) {
 			/// "ΡΑΙΝΣΪά"
 			/// "ραινσϊό"
 		}
-	}
 	else {
 		length = 0;
 		palabra = new char[length + 1];
