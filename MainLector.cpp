@@ -12,11 +12,6 @@ int main() {
 	int flag = 0;
 	int numPalabras = 0;
 	Palabra listaDePalabras[CANTIDAD];
-	/*for (int i = 0; i < CANTIDAD; i++)
-	{
-		listaDePalabras[i].setHilera();
-	}*/
-
 	ifstream archivo("Ej1.txt");
 	if (archivo.is_open()) {
 		while (!archivo.eof()) {
@@ -39,7 +34,6 @@ int main() {
 	for (int i = 0; i < cantidad; i++)
 	{
 		cout << listaDePalabras[i].getHilera() << endl;
-		//listaDePalabras[i].setHilera('\0');
 	}
 
 	/*int cantidad = atoi(cantidadPalabras);
