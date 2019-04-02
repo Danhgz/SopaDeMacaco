@@ -17,13 +17,37 @@ Palabra::Palabra(char * hilera) {
 			if (hilera[i] >= 'A' && hilera[i] <= 'Z') {
 				palabra[i] = hilera[i] - 'A' + 'a';
 
+			}else if (hilera[i] == 'Ü')
+			{
+				palabra[i] = hilera[i] - 25;
+			}
+			else if (hilera[i] == 'Ú')
+			{
+				palabra[i] = hilera[i] - 70;
+			}
+			else if (hilera[i] == 'Ó')
+			{
+				palabra[i] = hilera[i] - 62;
+			}
+			else if (hilera[i] == 'Í')
+			{
+				palabra[i] = hilera[i] - 63;
+			}
+			else if (hilera[i] == 'É')
+			{
+				palabra[i] = hilera[i] - 14;
+			}
+			else if (hilera[i] == 'Á')
+			{
+				palabra[i] = hilera[i] - 21;
+			}
+			else if (hilera[i] == 'Ñ')
+			{
+				palabra[i] = hilera[i] - 1;
 			}
 			else {
 				palabra[i] = hilera[i];
 			}
-			/// ARREGLAR
-			/// "ÑÁÉÍÓÚÜ"
-			/// "ñáéíóúü"
 		}
 	}
 	else {
