@@ -26,9 +26,6 @@ int main() {
 			cout << palabras[i];
 		}
 	}
-
-
-
 	system("pause");
 	return 0;
 }
