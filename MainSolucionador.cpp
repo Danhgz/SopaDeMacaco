@@ -1,9 +1,13 @@
-//#include "Lector.h"
 #include<iostream>
 #include<cstring>
+#include<stdlib.h> 
+#include"Palabra.h"
+#include "Solucionador.h"
+
 using namespace std;
-int main(int argc, char * * argv) {
-	
+
+int main(int argc, char * * argv) 
+{
 	if(3==argc || 4==argc)
 	{ 		
 		int err = 0;
@@ -20,6 +24,7 @@ int main(int argc, char * * argv) {
 		}	
 		if (!err) {
 			//El codiguito va aki c:
+
 
 		}
 	}
