@@ -1,6 +1,5 @@
 #include<iostream>
 #include<cstring>
-#include<stdlib.h> 
 #include"Palabra.h"
 #include "Solucionador.h"
 
@@ -24,8 +23,10 @@ int main(int argc, char * * argv)
 		}	
 		if (!err) {
 			//El codiguito va aki c:
-
-
+			Solucionador sergei;
+			sergei.leerPalabras(argv[1]);
+			//sergei.leerSopa(argv[2]);
+			//sergei.solucionar(argv[3]);
 		}
 	}
 	return 0;
