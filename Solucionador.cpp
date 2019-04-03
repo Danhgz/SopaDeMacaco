@@ -14,18 +14,15 @@ void Solucionador::leerPalabras(char* nombreArchivo) {
 	char inputPalabras[] = "0000";
 	char palabra[25];
 	int numPalabras = 0;
-	listaDePalabras[CANTIDAD];
+	this->listaDePalabras = new Palabra[CANTIDAD];
 	ifstream archivo(nombreArchivo);
 	if (archivo.is_open()) {
 		archivo.getline(inputPalabras, 5);
 		cout << "Cantidad de palabras: "<<inputPalabras<< endl;
 		while (!archivo.eof()) {
 			archivo.getline(palabra, 26);
-			cout << palabra << endl;
 			listaDePalabras[numPalabras++].setHilera(palabra);
-			cout << listaDePalabras[numPalabras - 1].getHilera()<< endl;
 		}
-		cout << "SST";
 
 	}
 	archivo.close();
