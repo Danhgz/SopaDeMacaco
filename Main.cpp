@@ -15,7 +15,7 @@ int main(int argc, char * * argv) {
 		string ruta= "Ej1.txt";
 		int colum = atoi(argv[2]);
 		int filas = atoi(argv[3]);
-		string salida = "sopadeletras.txt";
+		char *salida = (char*)"";
 		if ((strlen(argv[1]) - ruta.rfind(".txt")) != 4 || colum==0 || filas==0) {
 			err++;
 		}
@@ -24,7 +24,7 @@ int main(int argc, char * * argv) {
 		}
 		if (!err) {
 
-
+			
 			char cantidadPalabras[] = "0000";
 			char palabra[25];
 			int flag = 0;
@@ -45,10 +45,17 @@ int main(int argc, char * * argv) {
 					}
 				}
 			}
-
+			
 			archivo.close();
 			int cantidad = atoi(cantidadPalabras);
-			Generador gen(listaDePalabras, cantidad);
+			
+			Generador gen(listaDePalabras, cantidad,filas,colum);
+			if (salida != "") {
+				gen.Exportar(salida);
+			}
+			else {
+				gen.Imprimir();
+			}
 			/*ofstream sal(salida);
 			
 			for (int i = 0; i < cantidad; i++)
@@ -60,9 +67,11 @@ int main(int argc, char * * argv) {
 		}
 		else
 		{
-			cout << "Algun error hubo" << endl;
 		}
 
+	}
+	else {
+		cout << "Parametros erroneos" << endl;
 	}
 	return 0;
 }

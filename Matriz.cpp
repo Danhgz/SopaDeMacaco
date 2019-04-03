@@ -7,8 +7,7 @@ void Matriz::_init(int filas,int columnas, char relleno){
    this->filas = 0;
    this->columnas = 0;
    this->m = 0; // apunta a nulo
-   if(filas>0 && columnas>0){
-      cout << "Inicializar "<< filas << " x "<< columnas << endl;	   
+   if(filas>0 && columnas>0){   
 	  this->filas = filas;
       this->columnas = columnas;	  
 	  m = new char * [filas];
@@ -21,8 +20,7 @@ void Matriz::_init(int filas,int columnas, char relleno){
    }   
 }
 void Matriz::_liberar(){ 
-   if(m){
-	  cout << "Liberar "<< filas << " x "<< columnas << endl; 
+   if(m){ 
 	  for(int f=filas-1; f >=0; --f){
 		  delete [] m[f];
 	  }   
@@ -30,11 +28,9 @@ void Matriz::_liberar(){
    }
 }
 Matriz::Matriz(){ 
-  cout << "Constructor por omision"<< endl;
   _init(0,0,RELLENO);
 }
 Matriz::Matriz(int filas, int columnas){ 
-  cout << "Constructor "<< filas << " "<< columnas << endl;
   _init(filas,columnas,RELLENO);
 }
 
@@ -68,7 +64,6 @@ void Matriz::asignar(const Matriz & otra){
 
 
 Matriz::~Matriz(){ 
-  cout << "Destructor matriz "<< filas << " x "<< columnas << endl;
   _liberar();
 }
 int Matriz::esPosicionValida(int fila,int columna){
@@ -95,3 +90,4 @@ void Matriz::imprimir( ostream & salida){
 	 salida << endl;
    }	      
 }
+

@@ -1,6 +1,6 @@
 #ifndef MATRIZ_G02
 #define MATRIZ_G02
-#define RELLENO '0'
+#define RELLENO '*'
 #include<iostream>
 using namespace std;
 class Matriz {

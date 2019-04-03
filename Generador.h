@@ -1,6 +1,6 @@
 #ifndef _GENERADOR
 #define _GENERADOR
-#include<iostream>.
+#include<iostream>
 #include "Matriz.h"
 #include "Palabra.h"
 using namespace std;
@@ -17,8 +17,12 @@ private:
 public:
 	Generador(Palabra*,int, int, int);
 	void Generar();
+	void Rellenar();
 	void Randomizar(int*,int);
+	void RandomizarDos(int*,int*,int);
 	int PonerPalabra(Palabra,int,int,int);
+	void Exportar(char *);
+	void Imprimir();
 	int PonerLetra(Palabra, int, int, int, int,int);
 	int Recursivo(int);
 	int valido(int, int,char);

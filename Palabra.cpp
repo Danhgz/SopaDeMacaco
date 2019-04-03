@@ -43,7 +43,7 @@ Palabra::Palabra(char * hilera) {
 			}
 			else if (hilera[i] == 'Ñ')
 			{
-				palabra[i] = hilera[i] - 1;
+				palabra[i] = 'n';
 			}
 			else {
 				palabra[i] = hilera[i];
