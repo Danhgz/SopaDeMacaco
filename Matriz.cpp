@@ -1,7 +1,6 @@
 #include "Matriz.h"
 #include<iostream>
 using namespace std;
-// basada en la vista en clase.
 
 void Matriz::_init(int filas,int columnas, char relleno){
    this->filas = 0;
@@ -87,7 +86,6 @@ char Matriz::getValor(int fila,int columna){
    return valor;   
 }
 void Matriz::imprimir( ostream & salida){
-   salida << filas << " " << columnas << endl;
    for(int f=0; f< filas; ++f){
 	 for(int c=0; c<columnas; ++c){
 	   salida << " "<<m[f][c];

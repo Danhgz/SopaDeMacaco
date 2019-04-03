@@ -1,5 +1,5 @@
-#ifndef MATRIZ_G02
-#define MATRIZ_G02
+#ifndef _MATRIZ
+#define _MATRIZ
 #define RELLENO '0'
 #include<iostream>
 using namespace std;

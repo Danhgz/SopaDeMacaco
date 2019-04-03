@@ -4,7 +4,7 @@ class Palabra {
 private:
 	char * palabra;
 	int length;
-
+	void toLower(char*);
 public:
 	Palabra();
 	Palabra(char *);

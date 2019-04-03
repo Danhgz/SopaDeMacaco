@@ -5,8 +5,7 @@ Palabra::Palabra() {
 	palabra = new char[length + 1];
 	palabra[0] = '\0';
 }
-
-Palabra::Palabra(char * hilera) {
+void Palabra::toLower(char * hilera) {
 	if (hilera != 0) {
 		int cantidadDeLetras = 0;
 		while (hilera[cantidadDeLetras++] != '\0') {
@@ -17,33 +16,34 @@ Palabra::Palabra(char * hilera) {
 			if (hilera[i] >= 'A' && hilera[i] <= 'Z') {
 				palabra[i] = hilera[i] - 'A' + 'a';
 
-			}else if (hilera[i] == 'Ü')
+			}
+			else if (hilera[i] == 'Ü')
 			{
-				palabra[i] = hilera[i] - 25;
+				palabra[i] = 'u';
 			}
 			else if (hilera[i] == 'Ú')
 			{
-				palabra[i] = hilera[i] - 70;
+				palabra[i] = 'u';
 			}
 			else if (hilera[i] == 'Ó')
 			{
-				palabra[i] = hilera[i] - 62;
+				palabra[i] = 'o';
 			}
 			else if (hilera[i] == 'Í')
 			{
-				palabra[i] = hilera[i] - 63;
+				palabra[i] = 'i';
 			}
 			else if (hilera[i] == 'É')
 			{
-				palabra[i] = hilera[i] - 14;
+				palabra[i] = 'e';
 			}
 			else if (hilera[i] == 'Á')
 			{
-				palabra[i] = hilera[i] - 21;
+				palabra[i] = 'a';
 			}
 			else if (hilera[i] == 'Ñ')
 			{
-				palabra[i] = hilera[i] - 1;
+				palabra[i] = 'ñ';
 			}
 			else {
 				palabra[i] = hilera[i];
@@ -55,7 +55,10 @@ Palabra::Palabra(char * hilera) {
 		palabra = new char[length + 1];
 		palabra[0] = '\0';
 	}
-	}
+}
+Palabra::Palabra(char * hilera) {
+	toLower(hilera);
+}
 
 	Palabra::~Palabra() {
 		if (palabra != 0) {
