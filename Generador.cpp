@@ -24,6 +24,7 @@ Generador::Generador(Palabra * listaPalabras ,int cantidad, int filas, int colum
 	}
 
 	Generar();
+	Rellenar();
 
 	
 }
@@ -109,7 +110,15 @@ int Generador::PonerPalabra(Palabra palabra,int x,int y,int carac){
 	return exito;
 }
 void Generador::Rellenar() {
-
+	for (int i = 0; i < filas; i++)
+	{
+		for (int j = 0; j < columnas; j++)
+		{
+			if (sopa.getValor(i, j) == '*') {
+				sopa.setValor(i, j, rand() % 24 + 'a');
+			}
+		}
+		}
 }
 int Generador::PonerLetra(Palabra palabra, int x, int y, int dx, int dy, int carac) {
 	int exito = 0;
