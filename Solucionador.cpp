@@ -17,13 +17,13 @@ void Solucionador::leerPalabras(char* nombreArchivo) {
 	this->listaDePalabras = new Palabra[CANTIDAD];
 	ifstream archivo(nombreArchivo);
 	if (archivo.is_open()) {
+		cout << "lalas";
+
 		archivo.getline(inputPalabras, 5);
-		cout << "Cantidad de palabras: "<<inputPalabras<< endl;
 		while (!archivo.eof()) {
 			archivo.getline(palabra, 26);
 			listaDePalabras[numPalabras++].setHilera(palabra);
 		}
-
 	}
 	archivo.close();
 	cantidadPalabras = atoi(inputPalabras);
@@ -35,6 +35,7 @@ void Solucionador::leerSopa(char* nombreArchivo) {
 
 	ifstream archivo(nombreArchivo);
 	if (archivo.is_open()) {
+		cout << "laala";
 
 		archivo.getline(inputFilas, 3,' ');
 		archivo.getline(inputColumnas, 3, '\n');
@@ -60,13 +61,19 @@ void Solucionador::leerSopa(char* nombreArchivo) {
 }
 
 void Solucionador::solucionar(char* solucionario) {
+	cout << "Holas";
+
 	int numPalabra = 0;
 	int contadorDir = 0;
 	int lengthPalabra = 0;
 	for (int f = 0; f < filasSopa; ++f ) {
+		cout << "Holas";
+
 		lengthPalabra = listaDePalabras[numPalabra].getLength();
 		for (int c = 0; c < colSopa; ++c) {
+			cout << "Holas";
 			if (listaDePalabras[numPalabra].charAt(0) == sopa->getValor(f,c)) { 
+				cout << "Holas";
 				if (ochoDirecciones(f, c, listaDePalabras[numPalabra], 0, contadorDir)) {
 					if (solucionario != 0) {
 						ofstream salida(solucionario);

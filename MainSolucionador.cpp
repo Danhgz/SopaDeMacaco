@@ -22,11 +22,11 @@ int main(int argc, char * * argv)
 			}
 		}	
 		if (!err) {
-			//El codiguito va aki c:
-			Solucionador sergei;
-			sergei.leerPalabras(argv[1]);
-			//sergei.leerSopa(argv[2]);
-			//sergei.solucionar(argv[3]);
+			Solucionador solucionador;
+			solucionador.leerPalabras(argv[1]);
+			cout << "lala";
+			solucionador.leerSopa(argv[2]);
+			solucionador.solucionar(argv[3]);
 		}
 	}
 	return 0;
