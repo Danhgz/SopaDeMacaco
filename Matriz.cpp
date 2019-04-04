@@ -1,7 +1,13 @@
+// clase creada por el profesor en clases
 #include "Matriz.h"
 #include<iostream>
 using namespace std;
-
+/*
+*@Función: inicializa el tamaño de las filas y columnas de la matriz, además asigna un caracter de relleno a cada posición 
+*@Param filas: parámetro de tipo int que indica la cantidad de filas que posee la matriz
+*@Param columnas: parámetro de tipo int que indica la cantidad de columnas que posee la matriz
+*@Param relleno: parámetro de tipo char que indica el relleno que se asignará en cada posición de la matriz de f x c
+*/
 void Matriz::_init(int filas,int columnas, char relleno){
    this->filas = 0;
    this->columnas = 0;
@@ -18,6 +24,9 @@ void Matriz::_init(int filas,int columnas, char relleno){
 	  }	  
    }   
 }
+/*
+*@Función: se encarga de eliminar las filas y las columnas de la matriz creada, esto para el destructor
+*/
 void Matriz::_liberar(){ 
    if(m){ 
 	  for(int f=filas-1; f >=0; --f){
@@ -49,6 +58,10 @@ Matriz::Matriz(const Matriz & otra){
       }		
    }	  
 }
+/*
+*@Función: se encarga de obtener los valores de filas y columnas de una matriz que entra como parámetro 
+*@Param: recibe como parámetro otra matriz por referencia de tipo Matriz 
+*/
 void Matriz::asignar(const Matriz & otra){
 	if(m){
 		_liberar();
@@ -65,6 +78,12 @@ void Matriz::asignar(const Matriz & otra){
 Matriz::~Matriz(){ 
   _liberar();
 }
+/*
+*@Función: verifica si la posición de la matriz en la fila y columna especificadas es válida
+*@Param fia:  parámetro de tipo int que indica la fila actual
+*@Param columna: parámetro de tipo int que indica la columna actual
+*@Return: retorna 1 (true) si la posición es válida, si no retorna un 0(false)
+*/
 int Matriz::esPosicionValida(int fila,int columna){
    return fila >=0 && fila < filas && columna >=0 && columna < columnas;	
 }
@@ -80,6 +99,10 @@ char Matriz::getValor(int fila,int columna){
    }
    return valor;   
 }
+/*
+*@Función: imprime la matriz
+*@Param: salida de datos estándar
+*/
 void Matriz::imprimir( ostream & salida){
    for(int f=0; f< filas; ++f){
 	 for(int c=0; c<columnas; ++c){

@@ -1,3 +1,4 @@
+// clase creada por el profesor en clases
 #include "Palabra.h"
 
 Palabra::Palabra() {
@@ -5,6 +6,10 @@ Palabra::Palabra() {
 	palabra = new char[length + 1];
 	palabra[0] = '\0';
 }
+/**
+*@Función: recibe hilera de caracteres y genera una palabra  nueva, además se encarga de convertir caracteres especiales como ÜÚÓÍÉÁÑ a minusculas y las que poseen una tilde, esta es removida
+*@Param hilera: puntero que apunta a una hilera de caracteres para crear una nueva palabra
+*/
 void Palabra::toLower(char * hilera) {
 	if (hilera != 0) {
 		int cantidadDeLetras = 0;
@@ -65,7 +70,11 @@ Palabra::Palabra(char * hilera) {
 			delete[] palabra;
 		}
 	}
-
+	/*
+	*@Función: determina si una palabra es igual a otra, la cual se recibe como parametro
+	*@Param: se recibe una palabra del tipo Palabra
+	*@Return: retorna 1 si son iguales o 0 si son diferentes, lo cual significa verdadero o falso respectivamente
+	*/
 	int Palabra::equals(Palabra& otra) {
 		int iguales = 0;
 		if (length == otra.length) {
@@ -76,11 +85,11 @@ Palabra::Palabra(char * hilera) {
 		}
 		return iguales;
 	} // retorna 0 si son diferentes
-
+	
 	char * Palabra::getHilera() {
 		return palabra;
 	}
-
+	
 	void Palabra::setHilera(char * hilera) {
 		Palabra temporal(hilera);
 		this->palabra = temporal.palabra;
@@ -92,7 +101,11 @@ Palabra::Palabra(char * hilera) {
 	int Palabra::getLength() {
 		return length;
 	}
-
+	/*
+	*@Función: encuentra un caracter en una posición especificada como parámetro 
+	*@Param: se recibe un int que indica la posición en la cual se desea buscar el caracter en la hilera 
+	*@Return: retorna el char encontrado en la posición indicada
+	*/
 	char Palabra::charAt(int pos) {
 		char letra = '\0';
 		if (pos >= 0 && pos < length) {

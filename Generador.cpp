@@ -33,7 +33,11 @@ void Generador::Generar() {
 	int pos = 0;
 		Recursivo(0);
 }
-
+/*
+*@Función:
+*@Param:
+*@Return:
+*/
 int Generador::Recursivo(int numPalabra) {	
 	int exito = 0;
 	int salir = 0;
@@ -66,6 +70,11 @@ int Generador::Recursivo(int numPalabra) {
 	return loPuso;
 
 }
+/*
+*@Función:
+*@Param:
+*@Return:
+*/
 void Generador::Exportar(char *ruta) {
 	ofstream salida(ruta);
 	salida << filas << " x " << columnas << endl;
@@ -79,9 +88,19 @@ void Generador::Exportar(char *ruta) {
 		salida << endl;
 	}
 }
+/*
+*@Función:
+*@Param:
+*@Return:
+*/
 void Generador::Imprimir() {
 	sopa.imprimir(cout);
 }
+/*
+*@Función:
+*@Param:
+*@Return:
+*/
 int Generador::PonerPalabra(Palabra palabra,int x,int y,int carac){
 	int exito = 0;	
 	int Dx[8] = { 0,1,1,1,0,-1,-1,-1 };
@@ -109,6 +128,11 @@ int Generador::PonerPalabra(Palabra palabra,int x,int y,int carac){
 	}
 	return exito;
 }
+/*
+*@Función:
+*@Param:
+*@Return:
+*/
 void Generador::Rellenar() {
 	for (int i = 0; i < filas; i++)
 	{
@@ -120,6 +144,11 @@ void Generador::Rellenar() {
 		}
 		}
 }
+/*
+*@Función:
+*@Param:
+*@Return:
+*/
 int Generador::PonerLetra(Palabra palabra, int x, int y, int dx, int dy, int carac) {
 	int exito = 0;
 	if ( valido(x, y, palabra.charAt(carac))) {
@@ -138,11 +167,20 @@ int Generador::PonerLetra(Palabra palabra, int x, int y, int dx, int dy, int car
 	return exito;
 }
 
-
+/*
+*@Función:
+*@Param:
+*@Return:
+*/
 int Generador::valido(int x,int y,char letra){
 	return (x < columnas && y < filas && (sopa.getValor(x, y) == '*' || sopa.getValor(x, y) == letra));
 
 }
+/*
+*@Función:
+*@Param:
+*@Return:
+*/
 void Generador::Randomizar(int *vector, int maximo) {
 	int tempA;
 	int tempB;
@@ -159,6 +197,11 @@ void Generador::Randomizar(int *vector, int maximo) {
 
 
 	}
+/*
+*@Función:
+*@Param:
+*@Return:
+*/
 }void Generador::RandomizarDos(int *vector1, int *vector2, int maximo) {
 	int tempA;
 	int tempB;
@@ -180,6 +223,11 @@ void Generador::Randomizar(int *vector, int maximo) {
 
 	}
 }
+/*
+*@Función:
+*@Param:
+*@Return:
+*/
 int *Generador::posicion(int pos ) {
 	int y = pos / (columnas );
 	int x = pos % (columnas);

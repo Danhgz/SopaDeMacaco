@@ -9,7 +9,10 @@ Solucionador::Solucionador() {
 }
 Solucionador::~Solucionador() {
 }
-
+/*
+*@Función: se encarga de leer el archivo .txt con la lista de palabras y guardarlas en un array de tipo Palabra
+*@Param: recibe el archivo .txt
+*/
 void Solucionador::leerPalabras(char* nombreArchivo) {
 	char inputPalabras[] = "000";
 	char palabra[25];
@@ -27,7 +30,10 @@ void Solucionador::leerPalabras(char* nombreArchivo) {
 	archivo.close();
 	cantidadPalabras = atoi(inputPalabras);
 }
-
+/*
+*@Función: se encarga de leer el archivo .txt que contiene la sopa de letras
+*@Param: recibe el archivo .txt con la sopa de letras
+*/
 void Solucionador::leerSopa(char* nombreArchivo) {
 	char inputFilas[] = "00";
 	char inputColumnas[] = "00";
@@ -57,7 +63,10 @@ void Solucionador::leerSopa(char* nombreArchivo) {
 	archivo.close();
 	sopa->imprimir(cout);
 }
-
+/*
+*@Función: se encarga de dar las soluciones cuando encuentra cada una de las palabras dentro de la sopa
+*@Param: corresponde al nombre del archivo de respuestas
+*/
 void Solucionador::solucionar(char* solucionario) {
 	int numPalabra = 0;
 	int contadorDir = 0;
@@ -92,7 +101,14 @@ void Solucionador::solucionar(char* solucionario) {
 		cout <<endl<< "El archivo " << solucionario << " fue escrito exitosamente";
 	}
 }
-
+/*
+*@Función: se encarga de buscar la palabra en las 8 direcciones posibles dentro de la sopa
+*@Param f: la fila de la matriz a partir de la cual se comienza a buscar
+*@Param c: la columna de la matriz a partir de la cual se comienza a buscar
+*@Param palabra: palabra de tipo Palabra 
+*@Param contadorDir: dato de tipo int por referencia que corresponde al numero de dirección entre 0 a 8 que se está siguiendo
+*@Return: retorna 1(true) si se pudo encontrar la palabra en la dirección que se esté siguiendo 
+*/
 int Solucionador::ochoDirecciones(int f, int c, Palabra palabra, int& contadorDir){
 	int sePudo = 0; 
 	for (int i = 0; i<8 && !sePudo; ++i)
@@ -104,7 +120,15 @@ int Solucionador::ochoDirecciones(int f, int c, Palabra palabra, int& contadorDi
 	}
 	return sePudo;
 }
-
+/*
+*@Función: se encarga de determinar si la palabra que entra como parámetro es igual a la palabra que se encuentra en la sopa, esto lo hace comparando cada char. Se hace recursivamente
+*@Param f: la fila de la matriz a partir de la cual se comienza a buscar
+*@Param c: la columna de la matriz a partir de la cual se comienza a buscar
+*@Param palabra: palabra de tipo Palabra 
+*@Param posPalabra: parámetro de tipo int que indica un carácter especifico de toda la palabra en esa posición 
+*@Param dir: la dirección especifica de todas las 8 existentes en la cual se está buscando la palabra 
+*@Return:
+*/
 int Solucionador::palabraRecursiva(int f, int c, Palabra palabra, int posPalabra, int dir) {
 	int sePudo = 0;
 	int palabraLength = palabra.getLength();
