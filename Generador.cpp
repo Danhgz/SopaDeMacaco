@@ -28,15 +28,17 @@ Generador::Generador(Palabra * listaPalabras ,int cantidad, int filas, int colum
 
 	
 }
-
+/*
+*@Función: llama el método recursivo 
+*/
 void Generador::Generar() {
 	int pos = 0;
 		Recursivo(0);
 }
 /*
-*@Función:
-*@Param:
-*@Return:
+*@Función: función que se encarga de realizar llamados a otros métodos y poner todas las palabras dentro de la sopa de letras
+*@Param: el número de la palabra para ir revisando cual palabra se está poniendo en la sopa de letras
+*@Return: retorna un 1(true) si logra poner todas las palabras en la sopa de letras
 */
 int Generador::Recursivo(int numPalabra) {	
 	int exito = 0;
@@ -71,9 +73,8 @@ int Generador::Recursivo(int numPalabra) {
 
 }
 /*
-*@Función:
-*@Param:
-*@Return:
+*@Función: se encarga de exportar un archivo txt con la sopa de letras
+*@Param: la ruta destino del archivo
 */
 void Generador::Exportar(char *ruta) {
 	ofstream salida(ruta);
@@ -89,17 +90,18 @@ void Generador::Exportar(char *ruta) {
 	}
 }
 /*
-*@Función:
-*@Param:
-*@Return:
+*@Función: se encarga de imprimir la sopa de letras
 */
 void Generador::Imprimir() {
 	sopa.imprimir(cout);
 }
 /*
-*@Función:
-*@Param:
-*@Return:
+*@Función: se encarga de poner la palabra dentro de la sopa de letras siguiendo una dirección especifica de las 8 posibles
+*@Param x: la posición actual en x de la matriz
+*@Param y: la posición actual en y de la matriz
+*@Param palabra: una palabra de la clase Palabra
+*@Param carac: el numero de caracter por el cual va el recorrido en la hilera que corresponde a la palabra
+*@Return: retorna un 1(true) si logra poner la palabra dentro de la sopa con éxito
 */
 int Generador::PonerPalabra(Palabra palabra,int x,int y,int carac){
 	int exito = 0;	
@@ -129,9 +131,7 @@ int Generador::PonerPalabra(Palabra palabra,int x,int y,int carac){
 	return exito;
 }
 /*
-*@Función:
-*@Param:
-*@Return:
+*@Función: rellena los espacios de la sopa de letra restantes que han quedado con un símbolo de relleno, con letras aleatorias entre a y z
 */
 void Generador::Rellenar() {
 	for (int i = 0; i < filas; i++)
@@ -145,9 +145,14 @@ void Generador::Rellenar() {
 		}
 }
 /*
-*@Función:
-*@Param:
-*@Return:
+*@Función: método recursivo que se encarga de verificar si una posición en la sopa es valida siguiendo cierta dirección para ir poniendo cada caracter de la palabra
+*@Param palabra: una palabra de la clase Palabra
+*@Param x: la posición actual en x de la matriz
+*@Param y: la posición actual en y de la matriz
+*@Param dx: suma en una dirección para la x actual en la matriz
+*@Param dy: suma en una dirección para la y actual en la matriz
+*@Param carac: para ir aumentando el caracter que se pone de la palabra en la sopa
+*@Return: retorna un 1(true) si logra poner la letra de la palabra en la sopa de letras en la posición x,y
 */
 int Generador::PonerLetra(Palabra palabra, int x, int y, int dx, int dy, int carac) {
 	int exito = 0;
@@ -168,18 +173,20 @@ int Generador::PonerLetra(Palabra palabra, int x, int y, int dx, int dy, int car
 }
 
 /*
-*@Función:
-*@Param:
-*@Return:
+*@Función: se encarga de verificar si la posición en la matriz es válida
+*@Param x: la posición actual en x de la matriz
+*@Param y: la posición actual en y de la matriz
+*@Param letra: una letra de la palabra
+*@Return:  retorna 1(true) si se cumplen las condiciones especificadas
 */
 int Generador::valido(int x,int y,char letra){
 	return (x < columnas && y < filas && (sopa.getValor(x, y) == '*' || sopa.getValor(x, y) == letra));
 
 }
 /*
-*@Función:
-*@Param:
-*@Return:
+*@Función: se encarga de generar posiciones aleatorias dentro de un vector
+*@Param *vector: el vector a randomizar
+*@Param maximo: el tamaño del vector 
 */
 void Generador::Randomizar(int *vector, int maximo) {
 	int tempA;
@@ -198,9 +205,10 @@ void Generador::Randomizar(int *vector, int maximo) {
 
 	}
 /*
-*@Función:
-*@Param:
-*@Return:
+*@Función: se encarga de generar posiciones aleatorias en dos vectores
+*@Param *vector1: el primer vector a randomizar
+*@Param *vector2: el segundo vector a randomizar
+*@Param maximo: el tamaño maximo de los vectores
 */
 }void Generador::RandomizarDos(int *vector1, int *vector2, int maximo) {
 	int tempA;
@@ -224,9 +232,9 @@ void Generador::Randomizar(int *vector, int maximo) {
 	}
 }
 /*
-*@Función:
-*@Param:
-*@Return:
+*@Función: da las coordenadas de una posición
+*@Param: la posición que se busca
+*@Return: retorna las coordenadas de un punto dentro de la matriz
 */
 int *Generador::posicion(int pos ) {
 	int y = pos / (columnas );
