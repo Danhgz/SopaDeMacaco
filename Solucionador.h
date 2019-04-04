@@ -6,9 +6,9 @@
 
 class Solucionador {
 private:
-	int dirF[8] = {0,1,1,1,0,-1,-1,-1 };
-	int dirC[8] = {1,1,0,-1,-1,-1,0,1 };
-	char* dirNombre[8] = {(char*)"Este",(char*)"Sureste",(char*)"Sur",(char*)"Suroeste",(char*)"Oeste",(char*)"Noroeste",(char*)"Norte",(char*)"Noreste"};
+	int dirF[8] = {0,1,1, 1, 0,-1,-1,-1 };
+	int dirC[8] = {1,1,0,-1,-1,-1, 0, 1 };
+	char* dirNombre[8] = {(char*)"ESTE",(char*)"SURESTE",(char*)"SUR",(char*)"SUROESTE",(char*)"OESTE",(char*)"NOROESTE",(char*)"NORTE",(char*)"NORESTE"};
 	int cantidadPalabras;
 	Palabra* listaDePalabras;
 	Matriz* sopa;
@@ -22,7 +22,7 @@ public:
 	void leerPalabras(char*);
 	void leerSopa(char*);
 	void solucionar(char*);
-	int ochoDirecciones(int, int, Palabra, int, int&);
-	int palabraRecursiva(int,int,Palabra, int,int&);
+	int ochoDirecciones(int, int, Palabra, int&);
+	int palabraRecursiva(int,int,Palabra, int, int);
 };
 #endif

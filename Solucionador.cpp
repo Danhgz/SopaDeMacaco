@@ -11,18 +11,17 @@ Solucionador::~Solucionador() {
 }
 
 void Solucionador::leerPalabras(char* nombreArchivo) {
-	char inputPalabras[] = "0000";
+	char inputPalabras[] = "000";
 	char palabra[25];
 	int numPalabras = 0;
 	this->listaDePalabras = new Palabra[CANTIDAD];
 	ifstream archivo(nombreArchivo);
 	if (archivo.is_open()) {
-		cout << "lalas";
-
-		archivo.getline(inputPalabras, 5);
+		archivo.getline(inputPalabras, 4);
 		while (!archivo.eof()) {
 			archivo.getline(palabra, 26);
 			listaDePalabras[numPalabras++].setHilera(palabra);
+			cout << listaDePalabras[numPalabras-1].getHilera() << endl;
 		}
 	}
 	archivo.close();
@@ -35,8 +34,6 @@ void Solucionador::leerSopa(char* nombreArchivo) {
 
 	ifstream archivo(nombreArchivo);
 	if (archivo.is_open()) {
-		cout << "laala";
-
 		archivo.getline(inputFilas, 3,' ');
 		archivo.getline(inputColumnas, 3, '\n');
 		filasSopa = atoi(inputFilas);
@@ -46,7 +43,7 @@ void Solucionador::leerSopa(char* nombreArchivo) {
 		int j = 0;
 		char aux;
 		while (!archivo.eof()){
-			aux = archivo.get();
+			aux = archivo.get();			
 			if (aux != ' '&& aux != '\n') {
 				sopa->setValor(i, j++, aux);
 			}
@@ -56,43 +53,47 @@ void Solucionador::leerSopa(char* nombreArchivo) {
 					++i;
 				}			
 		}
-	}
+	}	
 	archivo.close();
+	sopa->imprimir(cout);
 }
 
 void Solucionador::solucionar(char* solucionario) {
-	cout << "Holas";
-
 	int numPalabra = 0;
 	int contadorDir = 0;
-	int lengthPalabra = 0;
-	for (int f = 0; f < filasSopa; ++f ) {
-		cout << "Holas";
+	int lengthPalabra = listaDePalabras[numPalabra].getLength();
 
-		lengthPalabra = listaDePalabras[numPalabra].getLength();
-		for (int c = 0; c < colSopa; ++c) {
-			cout << "Holas";
-			if (listaDePalabras[numPalabra].charAt(0) == sopa->getValor(f,c)) { 
-				cout << "Holas";
-				if (ochoDirecciones(f, c, listaDePalabras[numPalabra], 0, contadorDir)) {
+	for (int f = 0; f < filasSopa && numPalabra<cantidadPalabras; ++f ) {	
+		for (int c = 0; c < colSopa && numPalabra < cantidadPalabras; ++c)	{
+			if (listaDePalabras[numPalabra].charAt(0) == sopa->getValor(f,c)) 
+			{ 
+				if (ochoDirecciones(f, c, listaDePalabras[numPalabra], contadorDir)) 
+				{
+					cout << "><";// pa ver que pasa
 					if (solucionario != 0) {
-						ofstream salida(solucionario);
-						salida << listaDePalabras[numPalabra].getHilera() << " en fila: " << f << ", columna: " << c << " " << dirNombre[contadorDir] << endl;
+						ofstream(salida);
+						salida <<"-->"<< listaDePalabras[numPalabra].getHilera() << " en fila: " << f << ", columna: " << c << " direccion " << dirNombre[contadorDir] << endl;
+					}else {
+						cout <<"-->"<< listaDePalabras[numPalabra].getHilera() << " en fila: " << f << ", columna: " << c << " direccion "<< dirNombre[contadorDir] << endl;
 					}
-					else {
-						cout << listaDePalabras[numPalabra].getHilera() << " en fila: " << f << ", columna: " << c << " " << dirNombre[contadorDir] << endl;
-					}
-					if (numPalabra <= cantidadPalabras) {
+					if (numPalabra < cantidadPalabras) 
+					{
+						cout << numPalabra + 1 <<" de: "<<cantidadPalabras<<endl;//Para ver si lee las palabras
 						++numPalabra;
+						f = 0;
+						c = 0;
+						lengthPalabra = listaDePalabras[numPalabra].getLength();
 					}
 				}		
 			}
 		}
 	}
+	if (solucionario != 0) {
+		cout <<endl<< "El archivo " << solucionario << " fue escrito exitosamente";
+	}
 }
 
-int Solucionador::ochoDirecciones(int f, int c, Palabra palabra, int posPalabra, int& contadorDir)
-{
+int Solucionador::ochoDirecciones(int f, int c, Palabra palabra, int& contadorDir){
 	int sePudo = 0; 
 	for (int i = 0; i<8 && !sePudo; ++i)
 	{
@@ -104,17 +105,17 @@ int Solucionador::ochoDirecciones(int f, int c, Palabra palabra, int posPalabra,
 	return sePudo;
 }
 
-int Solucionador::palabraRecursiva(int f, int c, Palabra palabra, int posPalabra, int& contadorDir) {
+int Solucionador::palabraRecursiva(int f, int c, Palabra palabra, int posPalabra, int dir) {
 	int sePudo = 0;
 	int palabraLength = palabra.getLength();
-	
+
 	if (sopa->esPosicionValida(f,c)) {
-		if (sopa->getValor(f,c) == palabra.charAt(palabraLength)){
+		if (sopa->getValor(f,c) == palabra.charAt(palabraLength-1)){
 			sePudo = 1;
 		}
 		else{
 			if(posPalabra < palabraLength && sopa->getValor(f,c) == palabra.charAt(posPalabra)) {
-				sePudo = palabraRecursiva(f + dirF[contadorDir], c + dirC[contadorDir], palabra, posPalabra + 1, contadorDir);
+				sePudo = palabraRecursiva(f + dirF[dir], c + dirC[dir], palabra, (posPalabra + 1), dir);
 			}
 		}
 	}

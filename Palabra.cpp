@@ -83,10 +83,10 @@ Palabra::Palabra(char * hilera) {
 
 	void Palabra::setHilera(char * hilera) {
 		Palabra temporal(hilera);
-		palabra = temporal.palabra;
+		this->palabra = temporal.palabra;
 		temporal.palabra = 0;
 		//Para que el delete no me mate lo que me robe
-		length = temporal.length;
+		this->length = temporal.length;
 	}
 
 	int Palabra::getLength() {

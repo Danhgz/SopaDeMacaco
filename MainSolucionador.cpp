@@ -23,9 +23,13 @@ int main(int argc, char * * argv)
 		}	
 		if (!err) {
 			Solucionador solucionador;
+			cout << "   --- Lista de Palabras ---    "<< endl;
 			solucionador.leerPalabras(argv[1]);
-			cout << "lala";
+			cout <<endl << "   --- Sopa de Letras ---    "<< endl << endl;
 			solucionador.leerSopa(argv[2]);
+			if (argv[3] == 0) {
+				cout << endl << "   ~ ~ ~ Solucionario ~ ~ ~    " << endl;
+			}
 			solucionador.solucionar(argv[3]);
 		}
 	}
