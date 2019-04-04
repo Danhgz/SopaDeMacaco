@@ -94,7 +94,6 @@ Palabra::Palabra(char * hilera) {
 		Palabra temporal(hilera);
 		this->palabra = temporal.palabra;
 		temporal.palabra = 0;
-		//Para que el delete no me mate lo que me robe
 		this->length = temporal.length;
 	}
 
