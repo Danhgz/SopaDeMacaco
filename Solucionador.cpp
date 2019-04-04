@@ -59,32 +59,34 @@ void Solucionador::leerSopa(char* nombreArchivo) {
 }
 
 void Solucionador::solucionar(char* solucionario) {
-	int numPalabra = 0;
 	int contadorDir = 0;
-	int lengthPalabra = listaDePalabras[numPalabra].getLength();
-
-	for (int f = 0; f < filasSopa && numPalabra<cantidadPalabras; ++f ) {	
-		for (int c = 0; c < colSopa && numPalabra < cantidadPalabras; ++c)	{
-			if (listaDePalabras[numPalabra].charAt(0) == sopa->getValor(f,c)) 
-			{ 
-				if (ochoDirecciones(f, c, listaDePalabras[numPalabra], contadorDir)) 
+	int lengthPalabra = listaDePalabras[0].getLength();
+	int flag = 0;
+	ofstream salida(solucionario);
+	if (solucionario != 0) {
+		salida<< "          ~ ~ ~ Solucionario ~ ~ ~" << endl;
+	}
+	for (int pal = 0; pal < cantidadPalabras; ++pal) {
+		flag = 0;
+		for (int f = 0; f < filasSopa && !flag; ++f) { //
+			for (int c = 0; c < colSopa && !flag; ++c) { //
+				if (listaDePalabras[pal].charAt(0) == sopa->getValor(f, c))
 				{
-					cout << "><";// pa ver que pasa
-					if (solucionario != 0) {
-						ofstream(salida);
-						salida <<"-->"<< listaDePalabras[numPalabra].getHilera() << " en fila: " << f << ", columna: " << c << " direccion " << dirNombre[contadorDir] << endl;
-					}else {
-						cout <<"-->"<< listaDePalabras[numPalabra].getHilera() << " en fila: " << f << ", columna: " << c << " direccion "<< dirNombre[contadorDir] << endl;
-					}
-					if (numPalabra < cantidadPalabras) 
+					if (ochoDirecciones(f, c, listaDePalabras[pal], contadorDir))
 					{
-						cout << numPalabra + 1 <<" de: "<<cantidadPalabras<<endl;//Para ver si lee las palabras
-						++numPalabra;
-						f = 0;
-						c = 0;
-						lengthPalabra = listaDePalabras[numPalabra].getLength();
+						if (solucionario != 0) {							
+							salida << pal+1 <<"-" << listaDePalabras[pal].getHilera() << " en fila: " << f << ", columna: " << c << " direccion " << dirNombre[contadorDir] << endl;
+						}
+						else {
+							cout << pal + 1 << "-" << listaDePalabras[pal].getHilera() << " en fila: " << f << ", columna: " << c << " direccion " << dirNombre[contadorDir] << endl;
+						}
+						if (pal < cantidadPalabras)
+						{
+							flag = 1;
+							lengthPalabra = listaDePalabras[pal].getLength();
+						}
 					}
-				}		
+				}
 			}
 		}
 	}
@@ -110,7 +112,8 @@ int Solucionador::palabraRecursiva(int f, int c, Palabra palabra, int posPalabra
 	int palabraLength = palabra.getLength();
 
 	if (sopa->esPosicionValida(f,c)) {
-		if (sopa->getValor(f,c) == palabra.charAt(palabraLength-1)){
+		//cout << f << " " << c << " en la sopa: " << sopa->getValor(f, c) << " posicion en la palabra " << posPalabra << " letra de la palabra " << palabra.charAt(posPalabra)<< endl;
+		if (sopa->getValor(f,c) == palabra.charAt(palabraLength-1) && posPalabra == palabraLength - 1){
 			sePudo = 1;
 		}
 		else{
